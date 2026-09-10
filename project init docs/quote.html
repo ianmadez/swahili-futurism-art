@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Production Proposal & Quote - Swahili Futurism</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-page: #FDFCFA;
+      --bg-surface: #F5F2EB;
+      --text-main: #1C1B1A;
+      --text-muted: #66635F;
+      --border-line: #DCD7CE;
+      --accent: #8E3A24;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 11pt;
+      line-height: 1.5;
+      padding: 28px 36px;
+    }
+
+    @page {
+      size: A4;
+      margin: 10mm 12mm;
+    }
+
+    .quote-sheet {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-bottom: 18px;
+      border-bottom: 2px solid var(--text-main);
+      margin-bottom: 20px;
+    }
+
+    .project-eyebrow {
+      font-size: 9pt;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .doc-title {
+      font-family: var(--font-serif);
+      font-size: 26pt;
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .meta-block {
+      text-align: right;
+      font-size: 10pt;
+      color: var(--text-muted);
+    }
+
+    .meta-block strong {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    /* Overview */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 20px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border-line);
+    }
+
+    .summary-col h3 {
+      font-size: 8.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .summary-col p {
+      font-size: 10.5pt;
+      color: var(--text-main);
+      line-height: 1.45;
+    }
+
+    /* Table */
+    .section-label {
+      font-family: var(--font-serif);
+      font-size: 15pt;
+      font-weight: 400;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    table.scope-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 18px;
+    }
+
+    table.scope-table th {
+      text-align: left;
+      font-size: 8.5pt;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--text-main);
+      font-weight: 500;
+    }
+
+    table.scope-table th.right, table.scope-table td.right {
+      text-align: right;
+    }
+
+    table.scope-table td {
+      padding: 10px 10px;
+      border-bottom: 1px solid var(--border-line);
+      vertical-align: top;
+      font-size: 10pt;
+    }
+
+    table.scope-table td.item-name {
+      font-weight: 500;
+      color: var(--text-main);
+      width: 32%;
+    }
+
+    table.scope-table td.item-desc {
+      color: var(--text-muted);
+      font-size: 9.5pt;
+      line-height: 1.45;
+      width: 52%;
+    }
+
+    table.scope-table td.item-cost {
+      font-weight: 500;
+      width: 16%;
+    }
+
+    /* Optional Extras Divider & Rows */
+    tr.table-divider-row {
+      break-before: page;
+      page-break-before: always;
+      break-after: avoid;
+      page-break-after: avoid;
+    }
+
+    tr.table-divider-row td {
+      background-color: var(--bg-surface);
+      font-size: 8pt;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      padding: 10px 10px 8px;
+      border-top: 2px solid var(--text-main);
+      border-bottom: 1px solid var(--border-line);
+    }
+
+    tr.optional-row td {
+      opacity: 0.9;
+    }
+
+    tr.optional-row td.item-cost {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Totals */
+    .total-box {
+      margin-left: auto;
+      width: 290px;
+      border-top: 1px solid var(--text-main);
+      padding-top: 10px;
+      margin-bottom: 24px;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10pt;
+      margin-bottom: 5px;
+    }
+
+    .total-row.grand {
+      font-size: 12.5pt;
+      font-weight: 600;
+      padding-top: 5px;
+      border-top: 1px dashed var(--border-line);
+      color: var(--accent);
+    }
+
+    .total-row.deposit {
+      font-size: 10.5pt;
+      font-weight: 500;
+      color: var(--text-main);
+      padding-top: 4px;
+    }
+
+    /* Notes */
+    .notes-callout {
+      background-color: var(--bg-surface);
+      border-left: 2px solid var(--accent);
+      padding: 10px 14px;
+      font-size: 9.5pt;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 28px;
+    }
+
+    /* Signatures */
+    .signoff-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      padding-top: 8px;
+    }
+
+    .sign-line {
+      border-top: 1px solid var(--text-main);
+      padding-top: 6px;
+      font-size: 8.5pt;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    @media print {
+      body {
+        padding: 0;
+        background: #fff;
+      }
+      .notes-callout {
+        background-color: #F8F8F8;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quote-sheet">
+    <header class="header-row">
+      <div>
+        <p class="project-eyebrow">Production Proposal & Project Quote</p>
+        <h1 class="doc-title">Swahili Futurism Online Exhibition</h1>
+      </div>
+      <div class="meta-block">
+        <p>Reference: <strong>SF-2026-Q1</strong></p>
+        <p>Date: <strong>September 3, 2026</strong></p>
+        <p>Valid Through: <strong>September 17, 2026</strong></p>
+      </div>
+    </header>
+
+    <div class="summary-grid">
+      <div class="summary-col">
+        <h3>Prepared For</h3>
+        <p><strong>Michelle Madekufamba / Zanzalu Curation</strong></p>
+        <p>Swahili Futurism Residency & Exhibition</p>
+        <p>Fumba Town, Zanzibar</p>
+      </div>
+      <div class="summary-col">
+        <h3>Project Objective</h3>
+        <p>Deliver an elevated, interactive digital gallery showcasing original residency artworks, complete with an immersive walk-through exhibition wall, artist biographies, and a real-time reservation and purchase system.</p>
+      </div>
+    </div>
+
+    <h2 class="section-label">Exhibition Pages & Functional Scope</h2>
+    <table class="scope-table">
+      <thead>
+        <tr>
+          <th>Deliverable</th>
+          <th>Scope & Experience</th>
+          <th class="right">Amount (USD)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="item-name">Page 1: Welcome & Curatorial Page</td>
+          <td class="item-desc">
+            The opening digital entrance introducing the Swahili Futurism movement, coastal residency background, and creative ethos. Designed with custom editorial typography and expressive visual layout.
+          </td>
+          <td class="item-cost right">$80.00</td>
+        </tr>
+        <tr>
+          <td class="item-name">Page 2: Catalogue & Virtual Gallery Wall</td>
+          <td class="item-desc">
+            The centerpiece exhibition floor. Features an interactive horizontal gallery wall that allows collectors to walk through and view all residency pieces side-by-side, responsive across mobile, tablet, and desktop.
+          </td>
+          <td class="item-cost right">$80.00</td>
+        </tr>
+        <tr>
+          <td class="item-name">Page 3: Purchase, Inquiries & Contact Page</td>
+          <td class="item-desc">
+            Dedicated acquisition and contact hub containing buyer instructions, direct gallery and curator contacts, certificate verification notes, and direct invoice/wire payment options.
+          </td>
+          <td class="item-cost right">$80.00</td>
+        </tr>
+        <tr>
+          <td class="item-name">Interactive Artwork & Artist Detail System</td>
+          <td class="item-desc">
+            Click-to-view pop-up showcase for each artwork. Displays high-resolution art inspection, featuring dynamic zooming, full artist biography, background story, medium, dimensions, and real-time piece availability.
+          </td>
+          <td class="item-cost right">$110.00</td>
+        </tr>
+        <tr>
+          <td class="item-name">Cart Page & 20-Minute Reservation Hold</td>
+          <td class="item-desc">
+            Specialized multi-piece cart built for one-of-a-kind originals. Temporarily holds chosen pieces for 20 minutes with a live countdown and inactivity prompt to prevent simultaneous purchases.
+          </td>
+          <td class="item-cost right">$120.00</td>
+        </tr>
+        <tr>
+          <td class="item-name">Instant Payment & Automatic "Sold" Status Sync</td>
+          <td class="item-desc">
+            Online checkout integration that updates the live gallery immediately. The moment a client completes a purchase, the artwork automatically switches to "Sold" across the site with no manual editing needed.
+          </td>
+          <td class="item-cost right">$100.00</td>
+        </tr>
+        <tr>
+          <td class="item-name">Pages 4 & 5: Exhibition Terms of Sale & Privacy Policy</td>
+          <td class="item-desc">
+            Drafting, styling, and integrating exhibition-grade Terms of Sale (consignment/residency provenance, transit insurance, release dates), Privacy Policy page and a optionally included Refund Policy page as well.
+          </td>
+          <td class="item-cost right">$50.00</td>
+        </tr>
+
+        <!-- Optional Extras Divider -->
+        <tr class="table-divider-row">
+          <td colspan="3">Optional Exhibition Enhancements (Excluded from Base Total)</td>
+        </tr>
+        <tr class="optional-row">
+          <td class="item-name">Exhibition SEO & Cultural Rich-Snippet Indexing</td>
+          <td class="item-desc">
+            Google Search Console indexing and Schema.org structured data (VisualArtwork & Person JSON-LD) across all 14 works and 7 artists for rich search previews.
+          </td>
+          <td class="item-cost right">+$120.00</td>
+        </tr>
+        <tr class="optional-row">
+          <td class="item-name">Printable Certificate of Authenticity Generator</td>
+          <td class="item-desc">
+            Collector incentive/provenance & automated system generating a branded Certificate of Authenticity PDF with unique verification details, instantly sent directly to the buyer's email on purchase.
+          </td>
+          <td class="item-cost right">+$100.00</td>
+        </tr>
+        <tr class="optional-row">
+          <td class="item-name">Ambient Soundscape & ASMR Micro-Audio</td>
+          <td class="item-desc">
+            Site-wide implementation of a togglable atmospheric coastal soundscape layer with tactile, ASMR-style audio feedback for artwork inspection, clicks, and modal interactions to maximize immersion and retention.
+          </td>
+          <td class="item-cost right">+$80.00</td>
+        </tr>
+        <tr class="optional-row">
+          <td class="item-name">Language Switch Toggle (EN | SW | FR | DE)</td>
+          <td class="item-desc">
+            Complete native language toggle supporting seamless translation toggling for all curatorial statements, artist biographies, and artwork metadata.
+          </td>
+          <td class="item-cost right">+$80.00 per language</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="total-box">
+      <div class="total-row">
+        <span>Base Project Subtotal</span>
+        <span>$620.00 USD</span>
+      </div>
+      <div class="total-row grand">
+        <span>Total Quotation</span>
+        <span>$620.00 USD</span>
+      </div>
+    </div>
+
+    <div class="notes-callout">
+      <strong>Launch & Domain Note:</strong> Production deployment, custom subdomain connection (e.g., <em>arts.zanzalu.org</em>), SSL security certification, and image optimization are included as part of standard site delivery.
+    </div>
+
+    <div class="signoff-grid">
+      <div>
+        <div class="sign-line">
+          <span>Prepared By: Ian Madekufamba</span>
+          <span>Date</span>
+        </div>
+      </div>
+      <div>
+        <div class="sign-line">
+          <span>Accepted By: Client Representative</span>
+          <span>Date</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
