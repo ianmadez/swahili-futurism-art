@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice - Swahili Futurism Online Exhibition</title>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', Arial, sans-serif, Helvetica;
+            color: #111215;
+            line-height: 1.35;
+            margin: 0;
+            padding: 24px 40px;
+            background-color: #FFFFFF;
+        }
+        .invoice-container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        .header-table, .details-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .header-table td {
+            vertical-align: top;
+        }
+        .company-title {
+            font-size: 24px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin: 0 0 5px 0;
+        }
+        .invoice-title {
+            font-size: 28px;
+            font-weight: 900;
+            text-transform: uppercase;
+            text-align: right;
+            margin: 0 0 5px 0;
+            color: #111215;
+        }
+        .meta-text {
+            font-size: 13px;
+            color: #676D77;
+            margin: 2px 0;
+        }
+        .text-right {
+            text-align: right;
+        }
+        .divider {
+            border: none;
+            border-top: 1px solid #D8DDE4;
+            margin: 14px 0;
+        }
+        .section-heading {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #676D77;
+            margin-bottom: 4px;
+        }
+        .billing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .billing-table th, .billing-table td {
+            padding: 7px 10px;
+            text-align: left;
+            border-bottom: 1px solid #D8DDE4;
+            font-size: 12px;
+        }
+        .billing-table th {
+            background-color: #F4F5F7;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.05em;
+        }
+        .totals-section {
+            margin-top: 12px;
+            float: right;
+            width: 300px;
+        }
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            font-size: 13px;
+        }
+        .total-row.final {
+            font-weight: 700;
+            font-size: 15px;
+            border-top: 2px solid #111215;
+            padding-top: 8px;
+            margin-top: 2px;
+        }
+        .clear {
+            clear: both;
+        }
+        .payment-instructions {
+            margin-top: 16px;
+            background-color: #F4F5F7;
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+        .payment-instructions h4 {
+            margin: 0 0 4px 0;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="invoice-container">
+    <!-- Header Section -->
+    <table class="header-table">
+        <tr>
+            <td>
+                <h1 class="company-title">Ian Madekufamba</h1>
+                <p class="meta-text">Independent Software Engineer & Creative Developer</p>
+                <p class="meta-text">Contact: ianmadekufamba@gmail.com</p>
+            </td>
+            <td class="text-right">
+                <h2 class="invoice-title">Invoice</h2>
+                <p class="meta-text"><strong>Agreement Ref:</strong> SF-2026-AGR</p>
+                <p class="meta-text"><strong>Effective Date:</strong> September 10, 2026</p>
+            </td>
+        </tr>
+    </table>
+
+    <hr class="divider">
+
+    <!-- Client Details Section -->
+    <table class="header-table">
+        <tr>
+            <td>
+                <div class="section-heading">Billed To</div>
+                <p class="meta-text"><strong>Client Representative:</strong> Michelle Madekufamba</p>
+                <p class="meta-text"><strong>Organization:</strong> Zanzalu - Swahili Futurism Residency & Exhibition</p>
+                <p class="meta-text"><strong>Location:</strong> Fumba Town, Zanzibar</p>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Line Items Table -->
+    <table class="billing-table">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th class="text-right">Amount (USD)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <strong>Swahili Futurism Online Exhibition - Core Development Scope</strong><br>
+                    <span style="font-size: 11px; color: #676D77;">Includes Welcome & Curatorial Intro, Virtual Gallery Wall & Catalogue, Artwork & Artist Detail Windows, Collector Cart & Temporary Reservation, Purchase/Inquiries & Contact, Terms of Sale & Privacy Policy, and Automated Sales & Deployment (arts.zanzalu.org).</span>
+                </td>
+                <td class="text-right" style="vertical-align: top;">$840.00 <span style="font-size:10px; color:#676D77;">(Base)</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Invoice Optional Add-On: Search Engine Optimization (SEO)</strong><br>
+                    <span style="font-size: 11px; color: #676D77;">Search Engine Optimization and rich-snippet indexing add-on package.</span>
+                </td>
+                <td class="text-right" style="vertical-align: top;">Included in Total</td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Invoice Optional Add-On: Digital Certificate Generator</strong><br>
+                    <span style="font-size: 11px; color: #676D77;">Automated digital certificate generation add-on package sent upon piece sale to buyer email.</span>
+                </td>
+                <td class="text-right" style="vertical-align: top;">Included in Total</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Totals Section -->
+    <div class="totals-section">
+        <div class="total-row">
+            <span>Total Project Cost:</span>
+            <span>$840.00 USD</span>
+        </div>
+        <div class="total-row final">
+            <span>50% Initial Deposit Due By 14/09/2026</span>
+            <span>$420.00 USD</span>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="clear"></div>
+
+    <!-- Payment Instructions -->
+    <div class="payment-instructions">
+        <h4>Authorized Settlement Accounts</h4>
+        <p style="margin: 3px 0;"><strong>Option 1 (Bank Transfer):</strong> Bank: CRDB Bank | Account Name: Edwin Eliakim Siaitty | Account Number: 0152782631300 | Ref: SF-2026-AGR Zanzalu</p>
+        <p style="margin: 4px 0 0 0;"><strong>Option 2 (PayPal):</strong> PayPal Account: innerstarstore@gmail.com</p>
+    </div>
+</div>
+
+</body>
+</html>
