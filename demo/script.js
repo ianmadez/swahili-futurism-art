@@ -1,16 +1,50 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Tab Navigation
+    // Tab Navigation & Sync (Desktop & Mobile Drawer)
     const navButtons = document.querySelectorAll('.nav-btn');
     const previewTabs = document.querySelectorAll('.preview-tab');
+    const burgerBtn = document.getElementById('burgerBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+
+    // Mobile Hamburger Toggle
+    if (burgerBtn && mobileDrawer) {
+        burgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            burgerBtn.classList.toggle('open');
+            mobileDrawer.classList.toggle('open');
+        });
+
+        // Close drawer when tapping outside
+        document.addEventListener('click', (e) => {
+            if (!mobileDrawer.contains(e.target) && !burgerBtn.contains(e.target)) {
+                burgerBtn.classList.remove('open');
+                mobileDrawer.classList.remove('open');
+            }
+        });
+    }
 
     navButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            navButtons.forEach(b => b.classList.remove('active'));
-            previewTabs.forEach(t => t.classList.remove('active'));
-
-            btn.classList.add('active');
             const target = btn.getAttribute('data-tab');
-            document.getElementById(target).classList.add('active');
+
+            // Close mobile drawer upon selection
+            if (burgerBtn && mobileDrawer) {
+                burgerBtn.classList.remove('open');
+                mobileDrawer.classList.remove('open');
+            }
+
+            // Sync active state across all instances of this tab's button
+            navButtons.forEach(b => {
+                if (b.getAttribute('data-tab') === target) {
+                    b.classList.add('active');
+                } else {
+                    b.classList.remove('active');
+                }
+            });
+
+            previewTabs.forEach(t => t.classList.remove('active'));
+            const targetEl = document.getElementById(target);
+            if (targetEl) targetEl.classList.add('active');
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     });

@@ -2982,6 +2982,235 @@ body {
 }
 
 /* ==========================================================================
+   Responsive Navigation & Mobile Drawer
+   ========================================================================== */
+.mobile-only {
+  display: none !important;
+}
+
+.desktop-only {
+  display: flex !important;
+}
+
+/* Mobile Floating Circular Glass Burger Button */
+.mobile-glass-burger {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.78) 0%, rgba(240, 244, 250, 0.46) 100%);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 10px 24px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(180, 195, 215, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0;
+  cursor: pointer;
+  z-index: 150;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.mobile-glass-burger:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 14px 28px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 #FFFFFF;
+}
+
+/* Zanzalu Concentric Emblem Trigger */
+.zanzalu-emblem-svg {
+  width: 26px;
+  height: 26px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  transform-origin: center;
+}
+
+/* Default Theme: Cool Brutalist Architectural Reticle */
+.ring-outer {
+  fill: var(--text-main);
+}
+
+.satellite-dot {
+  fill: #FFFFFF;
+}
+
+.ring-cream {
+  fill: var(--bg-surface);
+}
+
+.ring-cyan {
+  fill: var(--border-subtle);
+}
+
+.ring-dark {
+  fill: var(--text-main);
+}
+
+.ring-yellow {
+  fill: var(--bg-surface);
+}
+
+.ring-core {
+  fill: var(--text-main);
+}
+
+/* Zanzalu Palette Mode: Authentic Vibrant Coastal Colorway */
+[data-theme="zanzalu"] .ring-outer {
+  fill: #f2415d; /* Punch Coral */
+}
+
+[data-theme="zanzalu"] .satellite-dot {
+  fill: #fdfad9; /* Warm Pale Sand */
+}
+
+[data-theme="zanzalu"] .ring-cream {
+  fill: #fdfad9; /* Warm Pale Sand */
+}
+
+[data-theme="zanzalu"] .ring-cyan {
+  fill: #029bbd; /* Ocean Cyan */
+}
+
+[data-theme="zanzalu"] .ring-dark {
+  fill: #012350; /* Midnight Navy */
+}
+
+[data-theme="zanzalu"] .ring-yellow {
+  fill: #fee451; /* Sunshine Yellow */
+}
+
+[data-theme="zanzalu"] .ring-core {
+  fill: #012350; /* Midnight Navy */
+}
+
+/* Animated Dismiss Cross Overlay */
+.burger-close-x {
+  position: absolute;
+  font-size: 1.8rem;
+  line-height: 1;
+  font-weight: 300;
+  color: var(--text-main);
+  opacity: 0;
+  transform: scale(0.6) rotate(-90deg);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+[data-theme="zanzalu"] .burger-close-x {
+  color: #012350;
+}
+
+/* Active Drawer Open State */
+.mobile-glass-burger.open .zanzalu-emblem-svg {
+  opacity: 0;
+  transform: scale(0.5) rotate(180deg);
+}
+
+.mobile-glass-burger.open .burger-close-x {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* Slide-Down Glass Drawer */
+.mobile-drawer {
+  position: fixed;
+  top: 68px;
+  left: 16px;
+  right: 16px;
+  background: var(--glass-surface);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid var(--glass-border);
+  border-radius: 22px;
+  padding: 18px 16px;
+  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.16);
+  z-index: 140;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-12px) scale(0.98);
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mobile-drawer.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.mobile-drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mobile-drawer-nav .nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-main);
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.mobile-drawer-nav .nav-btn:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.mobile-drawer-nav .nav-btn.active {
+  background: var(--text-main);
+  color: #FFFFFF;
+}
+
+[data-theme="zanzalu"] .mobile-drawer-nav .nav-btn.active {
+  background: #012350;
+  color: #fdfad9;
+}
+
+.drawer-arrow {
+  font-size: 0.95rem;
+  opacity: 0.6;
+}
+
+.mobile-drawer-divider {
+  height: 1px;
+  background: var(--border-subtle);
+  width: 100%;
+}
+
+.mobile-drawer-theme-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 4px;
+}
+
+.drawer-theme-label {
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
    Sitewide Mobile Responsiveness (Non-Conflicting with Tab 2 Device Sandbox)
    ========================================================================== */
 
@@ -3022,35 +3251,17 @@ body {
 
 /* Mobile Devices (≤ 768px) */
 @media (max-width: 768px) {
-  /* Navigation & Theme Toggle Anchoring */
-  .nav-wrapper {
-    top: 12px;
-    width: 95%;
-    max-width: 480px;
+  /* Toggle Visibility: Hide Desktop Pills, Enable Glass Circle Burger */
+  .desktop-only {
+    display: none !important;
   }
 
-  .theme-toggle-wrapper {
-    top: 58px;
-    right: 50%;
-    transform: translateX(50%);
+  .mobile-only {
+    display: flex !important;
   }
 
   .viewport-stage {
-    padding: 104px 16px 40px;
-  }
-
-  .nav-pill {
-    width: 100%;
-    justify-content: space-between;
-    padding: 4px;
-    gap: 2px;
-  }
-
-  .nav-btn {
-    padding: 7px 12px;
-    font-size: 0.74rem;
-    flex: 1;
-    text-align: center;
+    padding: 68px 16px 40px;
   }
 
   .viewport-stage {

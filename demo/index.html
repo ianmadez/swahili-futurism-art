@@ -11,24 +11,80 @@
 </head>
 <body>
 
-  <!-- Floating Tab Switcher -->
-  <div class="nav-wrapper">
-    <nav class="nav-pill">
-      <button class="nav-btn active" data-tab="tab-sitemap">Sitemap</button>
-      <button class="nav-btn" data-tab="tab-wireframe">Wireframe</button>
-      <button class="nav-btn" data-tab="tab-styleguide">Style Guide</button>
-      <button class="nav-btn" data-tab="tab-design">Design</button>
-    </nav>
-  </div>
-
-  <!-- Top-Right Global Theme Toggle (Frosted Glass Capsule) -->
-  <div class="theme-toggle-wrapper">
-    <div class="glass-theme-pill tilt-interactive">
-      <div class="glass-specular-light"></div>
-      <button class="theme-toggle-btn active" data-theme-val="swahili">Swahili</button>
-      <button class="theme-toggle-btn" data-theme-val="zanzalu">Zanzalu</button>
+  <!-- Navigation Architecture: Desktop Floating Pills & Mobile Drawer -->
+  <header class="site-nav-header">
+    <!-- Desktop Center Nav Pill -->
+    <div class="nav-wrapper desktop-only">
+      <nav class="nav-pill">
+        <button class="nav-btn active" data-tab="tab-sitemap">Sitemap</button>
+        <button class="nav-btn" data-tab="tab-wireframe">Wireframe</button>
+        <button class="nav-btn" data-tab="tab-styleguide">Style Guide</button>
+        <button class="nav-btn" data-tab="tab-design">Design</button>
+      </nav>
     </div>
-  </div>
+
+    <!-- Desktop Top-Right Theme Toggle -->
+    <div class="theme-toggle-wrapper desktop-only">
+      <div class="glass-theme-pill tilt-interactive">
+        <div class="glass-specular-light"></div>
+        <button class="theme-toggle-btn active" data-theme-val="swahili">Swahili</button>
+        <button class="theme-toggle-btn" data-theme-val="zanzalu">Zanzalu</button>
+      </div>
+    </div>
+
+    <!-- Mobile Floating Circular Glass Logo Trigger -->
+    <button class="mobile-glass-burger mobile-only" id="burgerBtn" aria-label="Toggle navigation menu">
+      <div class="glass-specular-light"></div>
+      
+      <!-- Concentric Emblem SVG -->
+      <svg class="zanzalu-emblem-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle class="ring-outer" cx="50" cy="50" r="48" />
+        <circle class="satellite-dot" cx="84" cy="74" r="3.2" />
+        <circle class="satellite-dot" cx="77" cy="83" r="3.2" />
+        <circle class="satellite-dot" cx="69" cy="90" r="3.2" />
+        <circle class="ring-cream" cx="50" cy="50" r="37" />
+        <circle class="ring-cyan" cx="50" cy="50" r="29" />
+        <circle class="ring-dark" cx="50" cy="50" r="22" />
+        <circle class="ring-yellow" cx="50" cy="50" r="15" />
+        <circle class="ring-core" cx="50" cy="50" r="7.5" />
+      </svg>
+
+      <!-- Dismiss Cross (Appears on Open) -->
+      <span class="burger-close-x" aria-hidden="true">&times;</span>
+    </button>
+
+    <!-- Mobile Slide-Down Drawer -->
+    <div class="mobile-drawer mobile-only" id="mobileDrawer">
+      <nav class="mobile-drawer-nav">
+        <button class="nav-btn active" data-tab="tab-sitemap">
+          <span>Sitemap</span>
+          <span class="drawer-arrow">→</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-wireframe">
+          <span>Wireframe</span>
+          <span class="drawer-arrow">→</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-styleguide">
+          <span>Style Guide</span>
+          <span class="drawer-arrow">→</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-design">
+          <span>Design</span>
+          <span class="drawer-arrow">→</span>
+        </button>
+      </nav>
+
+      <div class="mobile-drawer-divider"></div>
+
+      <div class="mobile-drawer-theme-row">
+        <span class="drawer-theme-label">Theme Mode</span>
+        <div class="glass-theme-pill">
+          <button class="theme-toggle-btn active" data-theme-val="swahili">Swahili</button>
+          <button class="theme-toggle-btn" data-theme-val="zanzalu">Zanzalu</button>
+        </div>
+      </div>
+    </div>
+  </header>
 
   <main class="viewport-stage">
 
