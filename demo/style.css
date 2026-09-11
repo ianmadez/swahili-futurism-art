@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'BC Ludva';
+  src: url('../assets/fonts/BCLudva-Bold.otf') format('opentype');
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg-page: #F4F5F7;
   --bg-plaster: #EAECEF;
@@ -14,8 +22,8 @@
   --glass-border: rgba(255, 255, 255, 0.85);
   --glass-shadow: 0 16px 36px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.04);
   
-  --font-display: 'Big Shoulders Display', Impact, sans-serif;
-  --font-body: 'Plus Jakarta Sans', Arial, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'BC Ludva', 'Big Shoulders Display', Impact, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 *, *::before, *::after {
@@ -122,7 +130,7 @@ body {
 
 .view-heading {
   font-family: var(--font-display);
-  font-size: 3.4rem;
+  font-size: 3.8rem;
   font-weight: 900;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -1000,7 +1008,20 @@ body {
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: #CBD2DC;
+  border: 0.5px solid rgba(0, 0, 0, 0.12);
+  display: inline-block;
+}
+
+.win-dot:nth-child(1) {
+  background: #FF5F56;
+}
+
+.win-dot:nth-child(2) {
+  background: #FFBD2E;
+}
+
+.win-dot:nth-child(3) {
+  background: #27C93F;
 }
 
 .window-address-pill {
@@ -1139,6 +1160,12 @@ body {
 
   .mini-site-nav-stacked {
     margin-bottom: 18px;
+  }
+
+  [data-theme="zanzalu"] .mini-site-nav-stacked {
+    width: calc(100% + 28px);
+    margin: -18px -14px 20px -14px;
+    padding: 12px 14px 20px;
   }
 
   .mini-nav-links {
@@ -2365,11 +2392,83 @@ body {
   transform: translateY(-1px);
 }
 
-/* Modern Palette Header & Reset Button */
+/* Top-Right Floating Glass Theme Toggle */
+.theme-toggle-wrapper {
+  position: fixed;
+  top: 20px;
+  right: 28px;
+  z-index: 100;
+}
+
+.glass-theme-pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 4px 6px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.76) 0%, rgba(240, 244, 250, 0.44) 100%);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 999px;
+  box-shadow: 
+    0 10px 24px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(180, 195, 215, 0.3);
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.glass-theme-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 14px 28px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 #FFFFFF;
+}
+
+.theme-toggle-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 6px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-toggle-btn:hover {
+  color: var(--text-main);
+}
+
+.theme-toggle-btn.active {
+  background: var(--text-main);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+}
+
+/* Modern Palette Header & In-Page Theme Pills */
 .spec-header-actions {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.spec-theme-pill-group {
+  display: flex;
+  gap: 2px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  padding: 3px;
+}
+
+.spec-theme-pill-group .theme-toggle-btn {
+  padding: 4px 10px;
+  font-size: 0.68rem;
 }
 
 .btn-reset-palette {
@@ -2381,10 +2480,435 @@ body {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 3px 10px;
+  padding: 5px 12px;
   border-radius: 999px;
   cursor: pointer;
   transition: all 0.2s ease;
+}
+
+/* ==========================================================================
+   Zanzalu Brand Identity & Component Refinement
+   ========================================================================== */
+
+[data-theme="zanzalu"] {
+  --bg-page: #fdfad9;
+  --bg-plaster: #f4f0cb;
+  --bg-surface: #FFFFFF;
+  --bg-silver: #029bbd;
+  --silver-tint: #89e4d3;
+  --text-main: #012350;
+  --text-muted: #303030;
+  --border-subtle: #e4e0ba;
+  --border-strong: #029bbd;
+  --accent-clay: #f2415d;
+}
+
+[data-theme="zanzalu"] body {
+  background-color: #fdfad9;
+  background-image: 
+    radial-gradient(at 15% 15%, #FFFFFF 0px, transparent 65%),
+    radial-gradient(at 85% 20%, #f6f2c6 0px, transparent 60%),
+    radial-gradient(at 50% 80%, #eee9b4 0px, transparent 70%);
+}
+
+/* --- 1. Interactive Action Buttons (Strict Contrast Rules) --- */
+
+/* Blue/Navy Button -> Cream Text (#fdfad9) */
+[data-theme="zanzalu"] .btn-interactive-solid {
+  background: #012350;
+  color: #fdfad9;
+  box-shadow: 0 4px 14px rgba(1, 35, 80, 0.2);
+}
+
+[data-theme="zanzalu"] .btn-interactive-solid:hover {
+  background: #029bbd;
+  color: #fdfad9;
+  box-shadow: 0 8px 22px rgba(2, 155, 189, 0.25);
+}
+
+/* Red/Coral Outline -> Coral Text, Fills Coral with Cream Text on Hover */
+[data-theme="zanzalu"] .btn-interactive-outline {
+  border-color: #f2415d;
+  color: #f2415d;
+}
+
+[data-theme="zanzalu"] .btn-interactive-outline:hover {
+  background: #f2415d;
+  color: #fdfad9;
+  border-color: #f2415d;
+  box-shadow: 0 6px 18px rgba(242, 65, 93, 0.25);
+}
+
+/* Cream Button -> #303030 Text */
+[data-theme="zanzalu"] .btn-interactive-ghost {
+  background: #fdfad9;
+  border: 1px solid #e4e0ba;
+  color: #303030;
+}
+
+[data-theme="zanzalu"] .btn-interactive-ghost:hover {
+  background: #fee451;
+  border-color: #fee451;
+  color: #303030;
+  box-shadow: 0 6px 16px rgba(254, 228, 81, 0.3);
+}
+
+/* Glass Capsule Button */
+[data-theme="zanzalu"] .btn-interactive-glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(253, 250, 217, 0.65) 100%);
+  border: 1px solid rgba(228, 224, 186, 0.9);
+  color: #012350;
+}
+
+/* Global Solid Action Pills -> Cream Text */
+[data-theme="zanzalu"] .btn-panel-action-wide,
+[data-theme="zanzalu"] .modal-acquire-btn,
+[data-theme="zanzalu"] .nav-btn.active,
+[data-theme="zanzalu"] .glass-theme-pill .theme-toggle-btn.active,
+[data-theme="zanzalu"] .spec-theme-pill-group .theme-toggle-btn.active {
+  background: #012350;
+  color: #fdfad9;
+}
+
+[data-theme="zanzalu"] .btn-panel-action-wide:hover,
+[data-theme="zanzalu"] .modal-acquire-btn:hover {
+  background: #029bbd;
+  color: #fdfad9;
+}
+
+/* Checkout Button uses Punch Coral -> Cream Text */
+[data-theme="zanzalu"] .btn-checkout-action {
+  background: #f2415d;
+  color: #fdfad9;
+  box-shadow: 0 4px 14px rgba(242, 65, 93, 0.25);
+}
+
+[data-theme="zanzalu"] .btn-checkout-action:hover {
+  background: #012350;
+  color: #fdfad9;
+}
+
+[data-theme="zanzalu"] .btn-reset-palette:hover {
+  background: #012350;
+  color: #fdfad9;
+}
+
+/* --- 2. Tab 3: Mini Landing Page Mockup --- */
+[data-theme="zanzalu"] .mockup-browser-frame {
+  border-color: #e4e0ba;
+  box-shadow: 0 16px 44px rgba(1, 35, 80, 0.08);
+}
+
+[data-theme="zanzalu"] .browser-window-header {
+  background: #f4f0cb;
+  border-bottom-color: #e4e0ba;
+}
+
+[data-theme="zanzalu"] .window-address-pill {
+  background: #fdfad9;
+  border-color: #e4e0ba;
+  color: #303030;
+}
+
+[data-theme="zanzalu"] .browser-viewport-canvas {
+  background: #fdfad9;
+}
+
+/* Full-Bleed Cyan Header with Torn Paper Bottom Edge */
+[data-theme="zanzalu"] .mini-site-nav-stacked {
+  position: relative;
+  background: transparent;
+  width: calc(100% + 56px);
+  margin: -24px -28px 26px -28px;
+  padding: 16px 28px 24px;
+  border-bottom: none;
+}
+
+/* Pseudo-element holds the torn paper filter to protect child text from distortion */
+[data-theme="zanzalu"] .mini-site-nav-stacked::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: -14px;
+  right: -14px;
+  bottom: 0;
+  background-color: #029bbd;
+  filter: url(#filter_tornpaper);
+  z-index: 0;
+  pointer-events: none;
+}
+
+[data-theme="zanzalu"] .mini-brand-top,
+[data-theme="zanzalu"] .mini-nav-bottom-bar {
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme="zanzalu"] .mini-brand-logo-centered {
+  color: #fdfad9;
+}
+
+[data-theme="zanzalu"] .mini-nav-links {
+  color: #fdfad9;
+}
+
+[data-theme="zanzalu"] .mini-nav-links span {
+  color: #fdfad9;
+}
+
+[data-theme="zanzalu"] .mini-nav-links span:hover {
+  color: #fee451;
+}
+
+[data-theme="zanzalu"] .mini-icon-btn {
+  background: rgba(253, 250, 217, 0.16);
+  border-color: rgba(253, 250, 217, 0.45);
+  color: #fdfad9;
+}
+
+[data-theme="zanzalu"] .mini-icon-btn:hover {
+  background: #fdfad9;
+  border-color: #fdfad9;
+  color: #029bbd;
+}
+
+[data-theme="zanzalu"] .mini-icon-btn.primary {
+  background: #f2415d;
+  color: #fdfad9;
+  border-color: #f2415d;
+}
+
+[data-theme="zanzalu"] .mini-icon-btn.primary:hover {
+  background: #012350;
+  color: #fdfad9;
+}
+
+[data-theme="zanzalu"] .mini-index-rail .rail-title {
+  color: #029bbd;
+}
+
+[data-theme="zanzalu"] .mini-index-rail .rail-list li {
+  color: #303030;
+}
+
+[data-theme="zanzalu"] .mini-index-rail .rail-list li.active,
+[data-theme="zanzalu"] .mini-index-rail .rail-list li:hover {
+  color: #012350;
+}
+
+/* Cyan Matting directly framing the photo (No secondary outer line) */
+[data-theme="zanzalu"] .artwork-plinth {
+  background: #029bbd;
+  border: none;
+  padding: 8px;
+  box-shadow: 0 20px 44px rgba(2, 155, 189, 0.25), 0 4px 12px rgba(1, 35, 80, 0.08);
+}
+
+[data-theme="zanzalu"] .mini-artwork-intel .intel-title {
+  color: #012350;
+}
+
+[data-theme="zanzalu"] .mini-artwork-intel .intel-year {
+  color: #029bbd;
+}
+
+[data-theme="zanzalu"] .mini-artwork-intel .intel-spec {
+  color: #303030;
+}
+
+[data-theme="zanzalu"] .mini-artwork-intel .intel-curatorial {
+  color: #303030;
+}
+
+[data-theme="zanzalu"] .mini-single-cta {
+  color: #f2415d;
+  border-bottom-color: #f2415d;
+}
+
+/* --- 3. Tab 2: Wireframe Blueprint --- */
+[data-theme="zanzalu"] .device-switcher-pill {
+  background: #FFFFFF;
+  border-color: #e4e0ba;
+}
+
+[data-theme="zanzalu"] .device-btn {
+  color: #303030;
+}
+
+[data-theme="zanzalu"] .device-btn.active {
+  background: #fdfad9;
+  color: #012350;
+}
+
+[data-theme="zanzalu"] .wire-artboard {
+  background: #FFFFFF;
+  border-color: #e4e0ba;
+  box-shadow: 0 8px 24px rgba(1, 35, 80, 0.04);
+}
+
+[data-theme="zanzalu"] .wire-artboard-title {
+  color: #012350;
+}
+
+[data-theme="zanzalu"] .wire-artboard-tag {
+  background: #fdfad9;
+  border: 1px solid #e4e0ba;
+  color: #012350;
+}
+
+[data-theme="zanzalu"] .wire-sheet-canvas {
+  background: #fbf9e4;
+  border-color: #e4e0ba;
+}
+
+[data-theme="zanzalu"] .wire-comp-block {
+  background: #FFFFFF;
+  border-color: #e4e0ba;
+}
+
+/* Cream/Yellow Utility Stubs (Logo, 70%, 30%, Enter Gallery) -> #303030 Text */
+[data-theme="zanzalu"] .wire-box-stub {
+  background: #fee451;
+  border: 1px solid #e4e0ba;
+  color: #303030;
+}
+
+[data-theme="zanzalu"] .wire-box-stub.text-bold {
+  color: #012350;
+}
+
+[data-theme="zanzalu"] .wire-box-highlight {
+  border-color: #012350;
+  background: #FFFFFF;
+}
+
+[data-theme="zanzalu"] .wire-line-stub {
+  background: #d4dbe3;
+}
+
+[data-theme="zanzalu"] .wire-img-placeholder {
+  background: #e4eaf0;
+}
+
+[data-theme="zanzalu"] .wire-pill-stub {
+  background: #FFFFFF;
+  border-color: #e4e0ba;
+  color: #303030;
+}
+
+/* Active Filter Pill -> Zanzalu Blue with Cream Text */
+[data-theme="zanzalu"] .wire-pill-stub.active {
+  background: #012350;
+  color: #fdfad9;
+  border-color: #012350;
+}
+
+[data-theme="zanzalu"] .wire-wall-card-mock,
+[data-theme="zanzalu"] .wire-metric-box,
+[data-theme="zanzalu"] .wire-card-preview,
+[data-theme="zanzalu"] .wire-tier-mock,
+[data-theme="zanzalu"] .wire-cart-item-mock {
+  background: #FFFFFF;
+  border-color: #e4e0ba;
+}
+
+[data-theme="zanzalu"] .wire-tier-mock.active {
+  border-color: #f2415d;
+}
+
+/* Action Stubs inside Wireframes -> Zanzalu Blue with Cream Text */
+[data-theme="zanzalu"] .wire-sheet-canvas .wire-box-stub[style*="background: var(--text-main)"],
+[data-theme="zanzalu"] .wire-sheet-canvas .wire-box-stub[style*="background: rgb(17, 18, 21)"] {
+  background: #012350 !important;
+  color: #fdfad9 !important;
+  border-color: #012350 !important;
+}
+
+[data-theme="zanzalu"] .wire-hold-banner-mock {
+  background: #fdfad9;
+  border-color: #fee451;
+}
+
+/* --- 4. Tab 1 & Tab 4 Structural Harmony --- */
+/* Match all branch cards to clean white backgrounds */
+[data-theme="zanzalu"] .flow-card {
+  background: #FFFFFF;
+  border-color: #e4e0ba;
+  box-shadow: 0 8px 24px rgba(1, 35, 80, 0.04);
+}
+
+[data-theme="zanzalu"] .flow-card:hover {
+  border-color: #029bbd;
+  box-shadow: 0 16px 36px rgba(1, 35, 80, 0.08);
+}
+
+[data-theme="zanzalu"] .flow-card.root-card {
+  background: #FFFFFF;
+  border: 2px solid #f2415d;
+}
+
+[data-theme="zanzalu"] .flow-card.root-card:hover {
+  border-color: #012350;
+  box-shadow: 0 18px 40px rgba(242, 65, 93, 0.16);
+}
+
+[data-theme="zanzalu"] .flow-card-head {
+  border-bottom-color: #f0ecce;
+}
+
+[data-theme="zanzalu"] .flow-card-title {
+  color: #012350;
+}
+
+[data-theme="zanzalu"] .flow-card-badge {
+  background: #fdfad9;
+  border: 1px solid #e4e0ba;
+  color: #012350;
+}
+
+[data-theme="zanzalu"] .flow-card-item {
+  background: #fdfad9;
+  border: 1px solid #e4e0ba;
+  color: #303030;
+}
+
+[data-theme="zanzalu"] .flow-card-item:hover {
+  background: #FFFFFF;
+  color: #012350;
+  border-color: #029bbd;
+  box-shadow: 0 4px 10px rgba(2, 155, 189, 0.12);
+}
+
+[data-theme="zanzalu"] .flow-stem,
+[data-theme="zanzalu"] .flow-branch-row::before,
+[data-theme="zanzalu"] .flow-branch-row .flow-card::before {
+  background: #029bbd;
+}
+
+[data-theme="zanzalu"] .inspect-tag {
+  background: #012350;
+  color: #fdfad9;
+}
+
+[data-theme="zanzalu"] .timer-digits,
+[data-theme="zanzalu"] .timer-pulse-dot,
+[data-theme="zanzalu"] .split-included-tag,
+[data-theme="zanzalu"] .note-mark {
+  color: #f2415d;
+}
+
+[data-theme="zanzalu"] .timer-pulse-dot {
+  background: #f2415d;
+}
+
+[data-theme="zanzalu"] .art-status-flag.live {
+  color: #88cb02;
+}
+
+[data-theme="zanzalu"] .panel-live-pill.hold {
+  color: #f2415d;
+  background: rgba(242, 65, 93, 0.08);
+  border-color: rgba(242, 65, 93, 0.25);
 }
 
 .btn-reset-palette:hover {
@@ -2498,11 +3022,21 @@ body {
 
 /* Mobile Devices (≤ 768px) */
 @media (max-width: 768px) {
-  /* Navigation: Maintain compact pill across small screens */
+  /* Navigation & Theme Toggle Anchoring */
   .nav-wrapper {
     top: 12px;
     width: 95%;
     max-width: 480px;
+  }
+
+  .theme-toggle-wrapper {
+    top: 58px;
+    right: 50%;
+    transform: translateX(50%);
+  }
+
+  .viewport-stage {
+    padding: 104px 16px 40px;
   }
 
   .nav-pill {

@@ -6,7 +6,7 @@
   <title>Swahili Futurism Preview</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,6 +19,15 @@
       <button class="nav-btn" data-tab="tab-styleguide">Style Guide</button>
       <button class="nav-btn" data-tab="tab-design">Design</button>
     </nav>
+  </div>
+
+  <!-- Top-Right Global Theme Toggle (Frosted Glass Capsule) -->
+  <div class="theme-toggle-wrapper">
+    <div class="glass-theme-pill tilt-interactive">
+      <div class="glass-specular-light"></div>
+      <button class="theme-toggle-btn active" data-theme-val="swahili">Swahili</button>
+      <button class="theme-toggle-btn" data-theme-val="zanzalu">Zanzalu</button>
+    </div>
   </div>
 
   <main class="viewport-stage">
@@ -448,7 +457,10 @@
             <div class="spec-block-header">
               <span class="spec-block-title">Colors</span>
               <div class="spec-header-actions">
-                <span class="spec-block-note">Contrast & Minerals</span>
+                <div class="spec-theme-pill-group">
+                  <button class="theme-toggle-btn active" data-theme-val="swahili">Swahili</button>
+                  <button class="theme-toggle-btn" data-theme-val="zanzalu">Zanzalu</button>
+                </div>
                 <button class="btn-reset-palette" id="resetColorsBtn" title="Restore Default Palette">Reset</button>
               </div>
             </div>
@@ -506,12 +518,12 @@
               <div class="type-spec-card">
                 <span class="type-badge">DISPLAY TITLE</span>
                 <p class="type-sample-display">SWAHILI FUTURISM</p>
-                <span class="type-meta-desc">Big Shoulders Display · Heavy Condensed</span>
+                <span class="type-meta-desc">BC Ludva · Display</span>
               </div>
               <div class="type-spec-card">
                 <span class="type-badge">EDITORIAL SCRIPT</span>
                 <p class="type-sample-body">Clean readability across all dimensions and specs.</p>
-                <span class="type-meta-desc">Plus Jakarta Sans · Medium & Light</span>
+                <span class="type-meta-desc">Inter · Regular & Medium</span>
               </div>
             </div>
           </div>
@@ -1056,6 +1068,18 @@
     </div>
   </div>
 
+  <!-- TornPaper Filter Engine -->
+  <script src="https://cdn.jsdelivr.net/gh/happy358/TornPaper@v0.0.3/tornpaper.min.js"></script>
+  <script>
+    new Tornpaper({
+      filterName: "filter_tornpaper",
+      seed: 1,
+      tornFrequency: 0.05,
+      tornScale: 10,
+      grungeFrequency: 0.02,
+      grungeScale: 2
+    });
+  </script>
   <script src="colorpicker.js"></script>
   <script src="script.js"></script>
 </body>
