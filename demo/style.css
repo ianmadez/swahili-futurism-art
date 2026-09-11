@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'BC Ludva';
-  src: url('../assets/fonts/BCLudva-Bold.otf') format('opentype');
+  src: url('assets/fonts/BCLudva-Bold.otf') format('opentype');
   font-weight: 700 900;
   font-style: normal;
   font-display: swap;
@@ -130,7 +130,7 @@ body {
 
 .view-heading {
   font-family: var(--font-display);
-  font-size: 3.8rem;
+  font-size: 4.2rem;
   font-weight: 900;
   letter-spacing: 0.03em;
   text-transform: uppercase;
