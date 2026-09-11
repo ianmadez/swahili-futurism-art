@@ -638,6 +638,12 @@ body {
   align-items: start;
 }
 
+.guide-controls-pane,
+.guide-preview-pane {
+  min-width: 0;
+  max-width: 100%;
+}
+
 .guide-controls-pane {
   display: flex;
   flex-direction: column;
@@ -812,6 +818,7 @@ body {
   transform-style: preserve-3d;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
   cursor: pointer;
+  touch-action: none;
 }
 
 .glass-deluxe-card:hover {
@@ -1035,22 +1042,25 @@ body {
 }
 
 .browser-viewport-canvas {
-  padding: 24px 28px;
+  padding: 0;
   background: 
     radial-gradient(at 10% 10%, #FFFFFF 0px, transparent 60%),
     radial-gradient(at 90% 20%, #F1F4F8 0px, transparent 65%),
     #FAFAFC;
+  overflow: hidden;
+  max-width: 100%;
 }
 
-/* Stacked Editorial Navigation: Logo Centered on Top */
+/* Full-Width Header Bar directly under URL bar */
 .mini-site-nav-stacked {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 24px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
-  padding-bottom: 12px;
   width: 100%;
+  margin: 0;
+  padding: 18px 24px 14px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  box-sizing: border-box;
 }
 
 .mini-brand-top {
@@ -1149,23 +1159,27 @@ body {
   grid-template-columns: 120px 1fr 180px;
   gap: 24px;
   align-items: center;
-  padding: 10px 0 20px;
+  padding: 18px 24px 24px;
+  box-sizing: border-box;
 }
 
 /* Tablet & Mobile Adaptive Reflow for the Mockup Canvas */
 @media (max-width: 860px) {
   .browser-viewport-canvas {
-    padding: 18px 14px;
+    padding: 0;
   }
 
   .mini-site-nav-stacked {
-    margin-bottom: 18px;
+    margin: 0;
+    padding: 14px 16px 12px;
+    width: 100%;
   }
 
   [data-theme="zanzalu"] .mini-site-nav-stacked {
-    width: calc(100% + 28px);
-    margin: -18px -14px 20px -14px;
-    padding: 12px 14px 20px;
+    margin: 0;
+    padding: 14px 16px 12px;
+    border-radius: 0;
+    width: 100%;
   }
 
   .mini-nav-links {
@@ -1176,7 +1190,7 @@ body {
   .mini-editorial-stage {
     grid-template-columns: 1fr;
     gap: 20px;
-    padding: 6px 0 12px;
+    padding: 16px 16px 20px;
   }
 
   /* Transform left index rail into an interactive horizontal strip */
@@ -1283,7 +1297,7 @@ body {
   font-weight: 600;
 }
 
-/* Center Artwork Plinth */
+/* Center Artwork Plinth - Clean Thin White Outline */
 .mini-artwork-centerpiece {
   display: flex;
   justify-content: center;
@@ -1294,14 +1308,15 @@ body {
   width: 100%;
   max-width: 260px;
   aspect-ratio: 4 / 5;
-  border-radius: 8px;
-  background: #FFFFFF;
-  padding: 8px;
+  border-radius: 10px;
+  background: transparent;
+  padding: 0;
+  border: 1.5px solid #FFFFFF;
   box-shadow: 
-    0 24px 48px rgba(15, 23, 42, 0.1),
-    0 4px 12px rgba(15, 23, 42, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.9);
+    0 24px 48px rgba(15, 23, 42, 0.12),
+    0 4px 12px rgba(15, 23, 42, 0.05);
   position: relative;
+  overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -2614,34 +2629,17 @@ body {
   background: #fdfad9;
 }
 
-/* Full-Bleed Cyan Header with Torn Paper Bottom Edge */
+/* Full-Width Cyan Nav Header */
 [data-theme="zanzalu"] .mini-site-nav-stacked {
   position: relative;
-  background: transparent;
-  width: calc(100% + 56px);
-  margin: -24px -28px 26px -28px;
-  padding: 16px 28px 24px;
-  border-bottom: none;
-}
-
-/* Pseudo-element holds the torn paper filter to protect child text from distortion */
-[data-theme="zanzalu"] .mini-site-nav-stacked::before {
-  content: "";
-  position: absolute;
-  top: -14px;
-  left: -14px;
-  right: -14px;
-  bottom: 0;
-  background-color: #029bbd;
-  filter: url(#filter_tornpaper);
-  z-index: 0;
-  pointer-events: none;
-}
-
-[data-theme="zanzalu"] .mini-brand-top,
-[data-theme="zanzalu"] .mini-nav-bottom-bar {
-  position: relative;
-  z-index: 1;
+  background: #029bbd;
+  width: 100%;
+  margin: 0;
+  padding: 18px 24px 14px;
+  border-radius: 0;
+  border-bottom: 1px solid rgba(1, 35, 80, 0.12);
+  box-shadow: none;
+  box-sizing: border-box;
 }
 
 [data-theme="zanzalu"] .mini-brand-logo-centered {
@@ -2661,8 +2659,8 @@ body {
 }
 
 [data-theme="zanzalu"] .mini-icon-btn {
-  background: rgba(253, 250, 217, 0.16);
-  border-color: rgba(253, 250, 217, 0.45);
+  background: rgba(253, 250, 217, 0.18);
+  border-color: rgba(253, 250, 217, 0.35);
   color: #fdfad9;
 }
 
@@ -2696,12 +2694,12 @@ body {
   color: #012350;
 }
 
-/* Cyan Matting directly framing the photo (No secondary outer line) */
+/* Plinth Matches Swahili with Thin White Outline */
 [data-theme="zanzalu"] .artwork-plinth {
-  background: #029bbd;
-  border: none;
-  padding: 8px;
-  box-shadow: 0 20px 44px rgba(2, 155, 189, 0.25), 0 4px 12px rgba(1, 35, 80, 0.08);
+  background: transparent;
+  border: 1.5px solid #FFFFFF;
+  padding: 0;
+  box-shadow: 0 24px 48px rgba(1, 35, 80, 0.14);
 }
 
 [data-theme="zanzalu"] .mini-artwork-intel .intel-title {
@@ -3388,7 +3386,7 @@ body {
   }
 
   .browser-viewport-canvas {
-    padding: 16px 12px;
+    padding: 0;
   }
 
   .mini-brand-logo-centered {

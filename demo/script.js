@@ -65,36 +65,56 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Parallax Tilt & Dynamic Specular Reflection for Glass Elements
-      const tiltElements = document.querySelectorAll('.tilt-interactive, .tilt-btn');
+    // Parallax Tilt & Dynamic Specular Reflection (Mouse + Mobile Touch Glide)
+    const tiltElements = document.querySelectorAll('.tilt-interactive, .tilt-btn');
 
-      tiltElements.forEach(elem => {
-        elem.addEventListener('mousemove', (e) => {
-          const rect = elem.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          const centerX = rect.width / 2;
-          const centerY = rect.height / 2;
+    tiltElements.forEach(elem => {
+        function executeTilt(clientX, clientY) {
+            const rect = elem.getBoundingClientRect();
+            const x = clientX - rect.left;
+            const y = clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
 
-          const rotateX = ((y - centerY) / centerY) * -12;
-          const rotateY = ((x - centerX) / centerX) * 12;
+            const rotateX = ((y - centerY) / centerY) * -14;
+            const rotateY = ((x - centerX) / centerX) * 14;
 
-          elem.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            elem.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
 
-          const light = elem.querySelector('.glass-specular-light');
-          if (light) {
-            light.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.95) 0%, transparent 60%)`;
-          }
-        });
+            const light = elem.querySelector('.glass-specular-light');
+            if (light) {
+                light.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.95) 0%, transparent 60%)`;
+            }
+        }
 
-        elem.addEventListener('mouseleave', () => {
-          elem.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
-          const light = elem.querySelector('.glass-specular-light');
-          if (light) {
-            light.style.background = 'linear-gradient(90deg, transparent 0%, #FFFFFF 50%, transparent 100%)';
-          }
-        });
-      });
+        function restoreTilt() {
+            elem.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            const light = elem.querySelector('.glass-specular-light');
+            if (light) {
+                light.style.background = 'linear-gradient(90deg, transparent 0%, #FFFFFF 50%, transparent 100%)';
+            }
+        }
+
+        // Desktop Mouse Events
+        elem.addEventListener('mousemove', (e) => executeTilt(e.clientX, e.clientY));
+        elem.addEventListener('mouseleave', restoreTilt);
+
+        // Mobile Touch Glide Events
+        elem.addEventListener('touchstart', (e) => {
+            if (e.touches.length > 0) {
+                executeTilt(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, { passive: true });
+
+        elem.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                executeTilt(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, { passive: true });
+
+        elem.addEventListener('touchend', restoreTilt);
+        elem.addEventListener('touchcancel', restoreTilt);
+    });
 
     // Individual 3D Parallax Tilt for Mounted Artwork Cards
     const artCards = document.querySelectorAll('.art-frame-card');
